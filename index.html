@@ -307,7 +307,29 @@ var res = encodeURI(uri);
   $('#result').on('click', function() {
     var cod = $("#codigo").val();
 cod = cod.replace(/\s+$/, '');
+
+
+if($("input[type='radio'].radioBtnClass").is(':checked')) {
+    var card_type = $("input[type='radio'].radioBtnClass:checked").val();
+
+if(card_type == 1){
 texto = middleMix(cod);
+
+}else{
+
+texto = cod;
+
+}
+
+
+
+    // alert();
+}
+
+
+
+
+
 console.log(texto);
 
 criaimagem(texto);
@@ -465,7 +487,8 @@ h1{
 
 
 </div>
-
+<input type="radio" style="font-size:2em" class="radioBtnClass" name="numbers" value="1" /> TEXTO CARLOSdificado<br/>
+<input type="radio" style="font-size:2em" class="radioBtnClass" name="numbers" value="2" checked /> TEXTO SIMPRES<br/>
 
                     <input type="text" id="codigo" value="" class="animated fadeIn form-control"/><br><br>
                     <span id="result" class="btn btn-success">bolsonarizar texto</span><br><br>
