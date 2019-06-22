@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>DESCUBRA SEU NOME PETISTA</title>
+
+	<meta property="og:site_name" content="DESCUBRA SEU NOME PETISTA">
+<meta property="og:title" content="DESCUBRA SEU NOME PETISTA" />
+<meta property="og:description" content="DESCUBRA SEU NOME PETISTA" />
+<meta property="og:image" itemprop="image" content="https://coreilabs.github.io/seunomecomunista/bg.jpg">
+<meta property="og:type" content="website" />
+<meta property="og:updated_time" content="1440432930" />
+
+<meta name="twitter:image" content="https://coreilabs.github.io/seunomecomunista/bg.jpg">
+
+<meta name="google-site-verification" content="rktMrtB90cVGsyIPlVdUwc5Nox7Zb1XmzKJEUD7bKUc" />
+
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta name="twitter:creator" content="@dedodeouro" />
+
+<meta property="og:url" content="https://coreilabs.github.io/seunomecomunista/" />
+
+
+
+
+
+
+	<script src="jquery.min.js"></script>
+
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="animate.css">
+<link rel="stylesheet" href="bootstrap-select.min.css">
+
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.3.0/webfont.js"></script>
+
+<script src="bootstrap-select.min.js"></script>
+<!-- <script src="jquery.min.js"></script> -->
+
+
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon"/>
+
+
+
+<meta name="viewport" content="width=device-width, user-scalable=no">
+
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
+
+
+
+<script>
+
+WebFont.load({
+  google: {
+    families: ['Special Elite']
+  },
+  active: function() {
+    // displayText();
+  }
+});
+
+
+$(document).ready(function(){
+
+    function middleMix( str){
+    var s= str.split(' ');
+    for(var i= 0; i<s.length;i++){
+        var A= s[i].split(''), c1= A.shift(), c3= A.pop() || '';
+        while(A.length) c1+= A.splice(Math.floor(Math.random()*A.length), 1);
+        s[i]= c1+c3;
+    }
+    if(s.join(' ')){
+    return s.join(' ');
+
+    }
+}
+
+
+
+
+function wrapText (context, text, x, y, maxWidth, lineHeight) {
+    
+    var words = text.split(' '),
+        line = '',
+        lineCount = 0,
+        i,
+        test,
+        metrics;
+
+    for (i = 0; i < words.length; i++) {
+        test = words[i];
+        metrics = context.measureText(test);
+        while (metrics.width > maxWidth) {
+            // Determine how much of the word will fit
+            test = test.substring(0, test.length - 1);
+            metrics = context.measureText(test);
+        }
+        if (words[i] != test) {
+            words.splice(i + 1, 0,  words[i].substr(test.length))
+            words[i] = test;
+        }  
+
+        test = line + words[i] + ' ';  
+        metrics = context.measureText(test);
+        
+        if (metrics.width > maxWidth && i > 0) {
+            context.fillText(line, x, y);
+            line = words[i] + ' ';
+            y += lineHeight;
+            lineCount++;
+        }
+        else {
+
+if(test!=undefined){
+            line = test;
+
+
+}
+
+        }
+    }
+context.shadowColor = "rgba(0,0,0,0.3)";
+
+    context.fillText(line, x, y);
+
+}
+
+
+
+
+ function criaimagem(pnome){
+
+        var canvas = document.getElementById('canvas'),
+        ctx = canvas.getContext('2d');
+canvas.width = $('#imgnome').width();
+canvas.crossOrigin = "Anonymous";
+canvas.height = $('#imgnome').height();
+// ctx.drawImage($('img').get(0), 0, 0);
+ctx.font = "60px Special Elite";
+// $(document).on('input','#inp',function(){
+    //redraw image
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage($('#imgnome').get(0), 0, 0);
+    //refill text
+    
+    // var naimg = ""+pnome.toUpperCase()+" "+snome.toUpperCase()+"";
+
+    ctx.fillStyle = "white";
+ctx.shadowColor = "rgba(0,0,0,0.9)";
+
+    // var naimg = "marco";
+wrapText(ctx, pnome.toUpperCase(), 50, 100, 575, 65);
+// wrapText(ctx, snome.toUpperCase(), 50, 800, 1100, 90);
+
+    // ctx.fillText(pnome.toUpperCase(),50,900);
+    // ctx.fillText(snome.toUpperCase(),50,1000);
+};
+
+
+
+var listapnome = [" ","Lixo", "Jean Wyllys", "Lularápio", "Gleisi", "Malandro", "Gilmarzinho", "Boulos", "Verdevaldo", "Nove Dedos", "Comunistinha", "Esquerdopata", "Vento Estoquista", "Feminazi", "Mortadela", "Sindicalista", "Abortista", "Ladrão", "Safado", "Terrorista", "Delator", "Pixuleco", "Nove Dedos", "Cú de Cachorro", "Mensaleiro", "Gilmar", "Mentiroso", "Gilmarzinho", "Dobrador de Meta", "Grampeado", "Feminista", "Lixo Humano"];
+
+var listasnome = ["", "de Merda", "da Odebrecht", "do Rosário", "do Triplex", "do Sítio de Atibaia", "Presidiário de Curitiba", "do Mandato Vendido", "do Presídio",  "Socialista", "Comunista", "da Greve", "Mendes" ];
+var pnome = null;
+var snome = null;
+
+
+  var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
+
+if(getUrlParameter('pn') && getUrlParameter('sn')){
+var pn = getUrlParameter('pn');
+var sn = getUrlParameter('sn');
+
+
+  
+}
+
+
+if(pn && sn){
+
+
+ ppnome = listapnome[pn];
+
+ssnome = listasnome[sn];
+
+
+
+$(".pnome").html("Meu nome comunista é "+ppnome+" "+ssnome)
+criaimagem(ppnome,ssnome);
+
+
+}
+
+
+
+ $('#dia').on('change', function() {
+$(".pnome").hide();
+
+     $('.alerta').hide();
+     $('#canvas').hide();
+
+     $('.share2').css("opacity", 0);
+
+      $(".share").html("");
+      $(".share3").html("");
+
+
+
+
+  var dia = this.value;
+ pnome = listapnome[dia];
+  // console.log( this.value );
+  // console.log(listapnome[dia] );
+});
+
+
+
+ $('#mes').on('change', function() {
+$(".pnome").hide();
+     $('#canvas').hide();
+
+
+     $('.alerta').hide();
+
+         $('.share2').css("opacity", 0);
+
+      $(".share").html("");
+      $(".share3").html("");
+
+
+var mes = this.value;
+snome = listasnome[mes];
+// console.log( this.value );
+// console.log(listasnome[mes] );
+});
+
+
+ $('#resulet').on('click', function() {
+  if(!snome || !pnome){
+     $('.alerta').show();
+
+    // console.log("selecione o dia e o mes do seu aniversario"); 
+  }else{
+     $('#canvas').show();
+
+        $(".pnome").html(pnome+" "+snome);
+
+
+
+criaimagem(pnome,snome);
+// });
+
+// $("html, body").animate({ scrollTop: $('#canvas').offset().top }, 1000);
+
+  $([document.documentElement, document.body]).animate({
+        scrollTop: $("#canvas").offset().top
+    }, 600);
+
+
+     $('.pnome').show();
+
+     $('.share2').css("opacity", 1);
+     // FB.XFBML.parse();
+     // FB.XFBML.parse(document.getElementById("step2"));
+
+
+        // $(".twitter-share-button").attr("href", "https://twitter.com/intent/tweet?text=Descubra%20seu%20nome%20Petista");
+      $(".share").html('<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="Meu nome petista é ' + pnome+" "+snome + ' | Descubra o seu! #pavaoMisterioso #showDoPavao #urubuDourado" data-count="none">Tweetar ' + pnome+" "+snome + '</a>');
+
+      var uri = 'Meu nome petista é ' + pnome+' '+snome + '  | Descubra o seu! ';
+
+var res = encodeURI(uri);
+
+
+    var whats = '<a class="botao" href="https://api.whatsapp.com/send?text='+res+'https://coreilabs.github.io/seunomecomunista/">Enviar Via Whatsapp</a>';
+
+    // var whats = '<a href="https://wa.me/?text="'+res+'">Enviar Via Whatsapp</a>';
+
+          $(".share3").html(whats);
+          // console.log(whats);
+
+
+
+
+    twttr.widgets.load();
+      }
+
+    });
+
+  $('#result').on('click', function() {
+    var cod = $("#codigo").val();
+cod = cod.replace(/\s+$/, '');
+texto = middleMix(cod);
+console.log(texto);
+
+criaimagem(texto);
+     $('#canvas').show();
+
+
+});
+
+
+    });
+
+
+    </script>
+
+
+
+
+    <style>
+    	 body:not(h1){
+        text-transform: uppercase;
+        /*background-color: red;*/
+        /*color:white;*/
+        font-family: "Special Elite";
+  }
+
+  .botao{
+    border-radius: 5px;
+    padding: 10px 17px;
+    font-size: 13px;
+    line-height: 19px;
+    height: 19px;
+    box-sizing: content-box;
+    letter-spacing: 0.02em;
+    font-weight: 600;
+    white-space: nowrap;
+    display: inline-block;
+
+    background-color: #01E675;
+    color: #fff !important;
+}
+
+.bg {
+    background: url(pavo.jpg) center no-repeat;
+    min-height: 300px;
+}
+  a:hover{
+    text-decoration: none!important;
+  }
+
+h1{
+    color: white!important;
+    text-shadow: 0px 0px 86px black, 0px 0px 70px black;
+}
+
+.jumbotron {
+    /*padding-top: 48px;*/
+    padding-bottom: 0px!important;
+}
+
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+     margin-bottom: 0px; 
+    color: inherit;
+    background-color: #eee;
+}
+
+/*#result:hover{
+  box: zoo;
+}*/
+
+
+#result {cursor:pointer; transition: all .2s ease-in-out; }
+#result:hover { transform: scale(1.1); }
+
+
+
+
+/*
+	.bg{
+
+		background: url(bg.jpg) center no-repeat;
+		min-height: 290px;
+	}
+
+
+	.col-xs-12{
+	}
+	#example_filter{
+		margin:0 auto;
+		text-align: center;
+	}*/
+</style>
+
+
+
+
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+
+
+
+</head>
+<body>
+<div class="jumbotron bg">
+  <div class="container ">
+<!-- <i class="fas fa-address-book " style="font-size: 4em;color:black"></i>  -->
+ <h1>embaralhadorSONARO</h1>
+  </div>
+</div>
+
+
+	<div class="container text-center">
+  	<!-- <h1 class="display-2 text-center">AGENDINHA</h1> -->
+
+		<div class="row">
+			<div class="col-md-12">
+<!-- <h2 class="pnome animated bounceInUp" style="display: none;"></h2> -->
+
+<canvas id="canvas" style="margin:0 auto;display: none;" class="img-responsive animated fadeIn"></canvas>
+<br>
+<div class="share" >
+  
+
+  
+</div>
+
+
+
+<br>
+<div class="share2" style="opacity: 0;">
+  <div class="fb-share-button" id="step2" data-href="https://coreilabs.github.io/seunomecomunista/" data-layout="button_count" data-size="small">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcoreilabs.github.io%2Fseunomecomunista%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartilhar</a></div>
+</div>
+<br>
+<div class="share3">
+  
+
+
+</div>
+
+
+                    <input type="text" id="codigo" value="" class="animated fadeIn form-control"/><br><br>
+                    <span id="result" class="btn btn-success">TRADUZIR COMANDO</span><br><br>
+
+
+
+<br>
+<!-- <button id="result" class="btn btn-danger">VER MEU NOME PETISTA</button> -->
+<img id="result"   src="botao.png" />
+<div class="alerta " style="display: none;">ESCOLHA O DIA E O MÊS DO SEU ANIVERSÁRIO</div>
+			</div>
+			</div>
+<br>
+<br>
+
+<form>
+    <img style="display:none" src="nome.jpg" id="imgnome"  crossorigin="anonymous"/>
+ <!-- <input type="text" id="inp"/> -->
+  <!-- <button type="submit">Save</button> -->
+</form>
+
+
+<br>
+<div class="fb-comments" data-href="https://coreilabs.github.io/seunomecomunista/" data-width="600" data-numposts="50"></div>
+<br>
+
+
+
+by <a href="https://twitter.com/dedodeouro">robolsomoro</a><br>
+<a href="https://github.com/coreilabs/seunomecomunista">github</a>
+	</div>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142378132-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-142378132-1');
+</script>
+
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v3.3&appId=452963352150744&autoLogAppEvents=1"></script>
+</body>
+</html>
